@@ -4,11 +4,12 @@ from sklearn import metrics
 from sklearn.linear_model import LassoCV
 import numpy as np
 from os import path
-from  helper import  read_data, mean_normalize ,split_test_train, polynomial_transform_train_data
+from helper import read_data, mean_normalize, split_test_train, polynomial_transform_train_data
 
 
+def train_polynomial_model(data_path: str, split_rate: int, polynom_degree: int, label_name: str, model_name: str,
+                           dropped_columns):
 
-def train_polynomial_model(data_path: str, split_rate: int, polynom_degree: int, label_name: str, model_name: str , dropped_columns):
     x, y = read_data(data_path, label_name, dropped_columns)
     x = mean_normalize(x)
 

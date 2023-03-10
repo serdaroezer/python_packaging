@@ -13,8 +13,10 @@ def mean_normalize(X):
 
 def read_data(path: str, label: str, dropped_columns):
     df = pd.read_csv(path)
-    y = df['Y house price of unit area']
-    x = df.drop([label, dropped_columns], axis=1)
+    y = df[label]
+    dropped_columns.append(label)
+    x = df.drop(dropped_columns, axis=1)
+
     return x, y
 
 
