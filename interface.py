@@ -2,6 +2,9 @@ import argparse
 import typing
 from pathlib import Path
 import click
+import time
+
+
 
 
 @click.group()
@@ -15,9 +18,8 @@ def cli() -> None:
 @click.option('--p', default='RealEstate.csv', help='dataset path')
 @click.option('--d', default=2, help='polynom degree')
 def train(p: str, d: int) -> None:
-    print(p, d)
-    click.echo('provide dataset path and degree of polynom')
-
+    with click.progressbar(label='processing', length=100, show_eta=True) as progress:
+        # model_train(progress)
 
 @click.command(name='test')
 @click.option('--p', default='RealEstate.csv', help='dataset path')
@@ -29,7 +31,7 @@ def test(p: str) -> None:
 @click.command(name='predict')
 @click.option('--data', type=(int, int),
               help='list of int, float or string  values of one instance. Order of data should be same as training'
-                  )
+              )
 def predict(data: typing.Tuple[int]) -> None:
     print('prediction done', data)
 
