@@ -24,13 +24,15 @@ def train(p: str, d: int, l: str, sl: int, mn: str, dc) -> None:
 
 
 @click.command(name='test')
-@click.option('--dp', default='RealEstate.csv', help='dataset path')
+@click.option('--p', default='RealEstate.csv', help='dataset path')
 @click.option('--d', default=2, help='polynom degree that you used during training')
 @click.option('--l', default='Y house price of unit area', help='column name from dataset for label')
+@click.option('--dc', default=['No'], help='column name to drop from dataset, could be a list of columns',
+              multiple=True)
 @click.option('--mn', default='house_prediction',
               help='model name to load and make prediction. Give it with full path . Example: /your/path/<model_name>')
-def test(p: str, l: str, mn: str, d: int) -> None:
-    predict(data_path=p, label_name=l, model_name=mn, polynom_degree=d)
+def test(p: str, l: str, d: int, dc, mn: str, ) -> None:
+    predict(data_path=p, label_name=l, model_name=mn, polynom_degree=d, dropped_columns=list(dc))
 
 
 if __name__ == '__main__':

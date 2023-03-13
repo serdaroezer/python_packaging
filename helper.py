@@ -25,7 +25,7 @@ def split_test_train(split_rate: int, X, y):
     return x_train, x_test, y_train, y_test
 
 
-def polynomial_transform_train_data(polynom_degree: int, x_train):
+def polynomial_transform_train_data(polynom_degree: int, data):
     poly = PolynomialFeatures(degree=polynom_degree)
-    x_train_poly = poly.fit_transform(x_train)
-    return x_train_poly
+    x_data_poly = poly.fit_transform(data)
+    return x_data_poly
